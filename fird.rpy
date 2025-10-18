@@ -1,0 +1,5 @@
+image kh = "images/klein/k_happy.png"
+image kn = "images/klein/k_neutral.png"
+image kshock = "images/klein/k_shock.png"
+image ksmile = "images/klein/k_smile.png"
+image ku = "./images/klein/k_upset.png"
