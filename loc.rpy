@@ -1,10 +1,6 @@
-image university = im.Scale("locations/university.png",1280, 720)
-image rain_uni = im.Scale("locations/rainy_university.png",1280, 720)
-image arcade = im.Scale("locations/arcade.png",1280, 720)
-image arcade_nightmare = im.Scale("locations/arcade_nightmare.png",1280, 720)
-image store = im.Scale("locations/store.png",1280, 720)
-image flyover = im.Scale("locations/flyover.png",1280, 720)
-image viewinginsta = im.Scale("locations/viewinginsta.png",1280, 720)
-image alanonbike = im.Scale("locations/alanonbike.png",1280, 720)
-image alanaccident = im.Scale("locations/alanaccident.png",1280, 720)
+
 image black = im.Scale("locations/black.jpg",1280, 720)
+image counter = im.Scale("locations/counter.jpg",1280, 720)
+image entrance = im.Scale("locations/entrance.jpg",1280, 720)
+image store = im.Scale("locations/store.jpg",1280, 720)
+

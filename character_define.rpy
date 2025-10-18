@@ -1,3 +1,3 @@
-define k = Character("Fird", color="#FFA500")  # Orange
-define m = Character("Customer", color="#008000")  # Green
-define s = Character("Mad", color="#0000FF")  # Blue
+define f = Character("Fird", color="#FFA500")  # Orange
+define c = Character("Customer", color="#008000")  # Green
+define m = Character("Mad", color="#0000FF")  # Blue
