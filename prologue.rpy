@@ -30,7 +30,7 @@ label customer1:
 
     menu:
         "What do you serve?"
-        "☕ Espresso (encourage work)":
+        "Espresso (encourage work)":
             jump espresso_path
         "Chamomile tea (suggest rest)":
             jump chamomile_path
@@ -79,9 +79,9 @@ label customer2:
 
     menu:
         "What do you serve?"
-        "☕ Black coffee (reminisce)":
+        "Black coffee (reminisce)":
             jump blackcoffee_path
-        "🍫 Hot chocolate (invite sharing)":
+        "Hot chocolate (invite sharing)":
             jump hotchoco_path
 
 label blackcoffee_path:
@@ -115,9 +115,9 @@ label customer3:
 
     menu:
         "What do you serve?"
-        "🍵 Matcha (try something new)":
+        "Matcha (try something new)":
             jump matcha_path
-        "☕ Latte (comfort and warmth)":
+        "Latte (comfort and warmth)":
             jump latte_path
 
 label matcha_path:
@@ -142,11 +142,12 @@ label latte_path:
 # ENDING: The Barista & Friend
 # -------------------------------
 label ending:
-    "You turn the sign to 'Closed.' A friend drops by, waving through the window."
+    "Fird wanted to turn the sign to 'Closed.' A friend drops by, waving through the window."
+    $ enter_from_right("ah", at_transform=right_side)
 
-    friend "Long day?"
-    barista "Yeah. Everyone seems to need healing lately."
-    friend "And you? Did you save some of that kindness for yourself?"
+    a "Long day?"
+    f "Yeah. Everyone seems to need healing lately."
+    a "And you? Did you save some of that kindness for yourself?"
 
     menu:
         "How do you respond?"
@@ -156,10 +157,17 @@ label ending:
             jump quiet_end
 
 label open_end:
-    barista "Honestly... I’m exhausted. Helping people makes me forget my own mess."
-    friend "Then let me buy you a drink for once."
-    barista "Ha, you’ll ruin my business model."
-    friend "Maybe healing’s not about running a café. Maybe it’s about sharing the table."
+    $ show_center("fn", "fh")
+    f "Honestly... I’m exhausted. Helping people makes me forget my own mess. You remember, right?"
+    $ show_right("an", "ah")
+    a "I've been your friend for over 10 years"
+    a "Of course I know"
+    $ show_right("ah", "an")
+    a "I know"
+    a "Then let me buy you a drink for once."
+    $ show_center("fh", "fn")
+    f "Ha, you’ll ruin my business model."
+    a "Maybe healing’s not about running a café. Maybe it’s about sharing the table."
     "You both sit, two cups between you. For the first time today, the silence feels peaceful."
     if healing_points >= 3:
         jump good_end
@@ -167,24 +175,30 @@ label open_end:
         jump neutral_end
 
 label quiet_end:
+    $ show_center("fn", "fh")
+
     barista "I’m fine. Just tired, that’s all."
+    $ show_right("ah", "an")
+
     friend "Sure... But even coffee goes cold if you leave it alone too long."
-    "You smile quietly. Outside, the rain stops."
-    if healing_points >= 3:
-        jump good_end
-    else:
-        jump neutral_end
+    "You smile quietly. Then you both left the cafe, ready for tomorrow"
+    
+    jump neutral_end
 
 label good_end:
-    scene cafe_closure
+   
+    $ set_scene("entrance")
+    $ play_music(mattari)
     "You close the café, the smell of roasted beans lingering."
     "Maybe healing isn’t found in the cup… but in the people who share it."
     "THE END – (Good Ending)"
     return
 
 label neutral_end:
-    scene cafe_closure
-    "You lock up alone. The air is still warm, but something inside you feels empty."
+   
+    $ set_scene("entrance")
+    $ play_music(mattari)
+    "You lock up. The air is still warm, but something inside you feels empty."
     "Tomorrow, maybe someone will make a cup for you."
     "THE END – (Neutral Ending)"
     return
