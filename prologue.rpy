@@ -68,9 +68,6 @@ label chamomile_path:
     $ healing_points = 1
     jump customer2
 
-# -------------------------------
-# CUSTOMER 2: Lonely Old Man
-# -------------------------------
 label customer2:
     "The door chimes again. An elderly man steps in, his gaze lingering on the empty chair by the window."
 
@@ -104,9 +101,6 @@ label hotchoco_path:
     $ healing_points += 1
     jump customer3
 
-# -------------------------------
-# CUSTOMER 3: The Artist
-# -------------------------------
 label customer3:
     "Evening settles in. A young artist stares at an empty sketchbook."
 
