@@ -19,15 +19,15 @@ label prologue:
 
 label customer1:
     
-    "Morning Shift"
     $ set_scene("counter")
+    "Morning Shift"
     $ play_music(teagarden)
     $ enter_from_right("kh") 
     "The bell rings. A tired student walks in, dark circles under their eyes."
     f "Come in! What can I get for you today? (Ah, it's him. A student from my old university. My junior, to say the least)"
 
     c "One espresso, please. Make it strong."
-    $ show_centre("ku","kh")
+    $ show_center("ku","kh")
     f "You look like you’ve been up all night."
 
     menu:
@@ -38,22 +38,22 @@ label customer1:
             jump chamomile_path
 
 label espresso_path:
-    $ show_centre("kn","ku")
+    $ show_center("kn","ku")
     f "Espresso coming right up. But you look like you could use a break. What's keeping you up at night?"
     c "The usual... deadlines wait for no one."
     "You hand over the espresso. Their hands tremble slightly as they take it."
     c "Thanks... I’ll just push through tonight."
-    f "Don’t forget—coffee helps you work, but it won’t help you heal. You need to save yourself from burn out"
+    $ show_center("ksmile","kn")
+    f "Don’t forget, coffee helps you work, but it won’t help you heal. You need to save yourself from burn out"
     c "Heh... maybe next time I’ll try that tea."
     $ healing_points = 0
-    $ show_centre("ksmile","kn")
 
     jump customer2
 
 label chamomile_path:
     # f "How about a cup of chamomile instead?"
     # c "But I’ll fall asleep..."
-    # $ show_centre("ksmile","ku")
+    # $ show_center("ksmile","ku")
     # f "Maybe that’s exactly what you need.:"
     # f "I was a student, and I am still a part time student now"
     # f "I know how it feels to be overwhelmed. Sometimes, the best thing you can do is step back and rest."
@@ -71,7 +71,7 @@ label chamomile_path:
     # c "...Yeah. Maybe rest is overdue."
     f "How about a cup of chamomile instead?"
     c "But I’ll fall asleep before I finish the report."
-    $ show_centre("ksmile","ku")
+    $ show_center("ksmile","ku")
     f "Maybe that’s exactly what you need."
     "You pour the tea slowly, the gentle scent of flowers drifting through the room."
     f "I was like you once. I’m still studying part-time, actually. I am also teaching coding on the side. So believe me, I know the spiral."
@@ -82,7 +82,7 @@ label chamomile_path:
     c "Never thought of it that way."
     f "Tell me, do you still enjoy what you’re studying?"
     c "I do. I love building things, but lately it just feels like pressure, not passion."
-    $ show_centre("ku","ksmile")
+    $ show_center("ku","ksmile")
 
     f "That’s burnout talking. It tricks you into thinking you hate what you love. Step away for a while and the spark usually finds its way back."
     c "But if I rest, I’ll fall behind."
@@ -90,7 +90,7 @@ label chamomile_path:
     "He looks down at the steaming cup. The light reflects softly in his tired eyes."
     f "Health first. Success means nothing if you collapse halfway through."
     c "You really sound like a lecturer now."
-    $ show_centre("kh","ksmile")
+    $ show_center("kh","ksmile")
 
     f "Maybe. But I learnt it the hard way. I started this café after one of my students fainted during an exam week. It reminded me how fragile we all are."
     "He nods quietly, clutching the mug as if holding on to warmth itself."
@@ -104,7 +104,7 @@ label customer2:
     "The bell above the door rings softly. An elderly man steps inside, his eyes resting on the empty chair by the window."
     f "Good afternoon. What can I get for you today?"
     c "Black coffee, please. No sugar."
-    $ show_centre("kn","ksmile")
+    $ show_center("kn","ksmile")
 
     f "Sure thing. Still her usual order, huh?"
 
@@ -116,6 +116,7 @@ label customer2:
             jump hotchoco_path
 
 label blackcoffee_path:
+    $ show_center("ksmile", "kn")
     f "Coming right up."
     "Fird grind the beans in silence; the earthy aroma fills the air."
     c "She always loved that smell... I still come here just to remember."
@@ -123,21 +124,27 @@ label blackcoffee_path:
     c "Maybe. But memories don’t talk back, do they?"
     f "No... but they listen. Sometimes that’s enough for the heart to speak."
     c "Hah. You sound like her. She used to say things like that."
+    $ show_center("kh", "kn")
+
     f "Maybe she taught us both something about kindness."
     "He stares at the cup, steam curling like ghosts of the past."
     c "Thank you, lad. It still feels lonely, but... a bit less so tonight."
+    f "How about something sweet next time?"
+    c "Sounds like a good idea. I'll be heading off for now."
+    f "Thank you and take care!"
     $ healing_points += 0
     jump customer3
 
 label hotchoco_path:
     f "You know, perhaps today calls for something sweeter. How about a hot chocolate?"
     c "She’d have loved that. She had the sweetest tooth you could imagine."
-    $ show_centre("kh","kn")
+    $ show_center("kh","kn")
     f "Tell me about her—if you don’t mind."
     "He chuckles softly, the lines on his face easing as he talks."
     c "We met during the war, you know. She used to knit scarves for the neighbours. Always said love’s warmer when it’s shared."
     f "Sounds like she brought warmth wherever she went."
     c "Aye. And I’ve been trying to keep a little of it alive."
+    $ show_center("ksmile","kh")
     f "You have. Every time you come in, she’s here with you—in stories, in smell, in the sound of your cup."
     "He sits quietly for a moment, then smiles."
     c "Thank you. It’s been years since anyone asked me about her. This... this helped."
@@ -146,9 +153,9 @@ label hotchoco_path:
     c "That... really helps. Thank you. I will be taking my leave now."
     f "No worries, it is my pleasure to help. Take care of yourself!"
     c "Will do, lad. Will do."
-    $ show_centre("kn","kh")
+    $ show_center("kn","ksmile")
     f "(Hmm, take care of yourself, eh)"
-    $ show_centre("ksmile","kn")
+    $ show_center("ksmile","kn")
     f "No, why I am overthinking now? Ahahaha"
     $ healing_points += 1
     jump customer3
@@ -156,14 +163,14 @@ label hotchoco_path:
 label customer3:
     "Evening has draped itself across the café. Outside, the rain has slowed to a whisper against the window."
     "A young artist sits by the counter, sketchbook open but untouched. The pencil rests like a burden between their fingers."
-    $ show_centre("kn","ksmile")
+    $ show_center("kn","ksmile")
     f "Evening. You look as if you’ve been staring at that page for a while now. Seems like you're lost"
     c "In thoughts, all alone?"
-    $ show_centre("kh","kn")
+    $ show_center("kh","kn")
     f "I love it when someone catched my reference! Ahaha"
     c "Ahahaha."
     c "About your earlier question. I do feel lost. Feels like the more I look at it, the less I know what to draw."
-    $ show_centre("kn","kh")
+    $ show_center("kn","kh")
     f "Creative block?"
     c "Something like that. Coffee, anything. Maybe it’ll make me draw again."
     f "Let’s see what we can brew for that."
@@ -179,12 +186,12 @@ label matcha_path:
     f "Want to try matcha? It’s a little bitter at first, but it has a way of clearing the fog."
     c "Matcha? Looks... greener than I expected."
     "Fird whisk the powder carefully; a thin froth forms, bright against the porcelain cup."
-    $ show_centre("ksmile","kn")
+    $ show_center("ksmile","kn")
     f "A new taste can stir old feelings. Sometimes you need a different flavour to find your rhythm again."
     c "My tutor used to say the same — that stagnation kills art faster than failure."
     f "He was wise. I teach coding part-time, and I tell my students the same thing: never be afraid to break something. It’s the only way to understand it."
     c "You’re a teacher?"
-    $ show_centre("kh","ksmile")
+    $ show_center("kh","ksmile")
 
     f "Yeah, a coding teacher. Python mostly. I run a few evening classes after closing time here."
     c "Teaching and coffee? That’s an interesting mix."
@@ -196,7 +203,7 @@ label matcha_path:
     f "I tell my students that a bug isn’t failure, it’s feedback. It means the programme’s trying to talk back to you, just like art when it doesn’t feel right."
     "They nod slowly, intrigued."
     c "So when your code fails, you don’t get angry?"
-    $ show_centre("ksmile","kh")
+    $ show_center("ksmile","kh")
     f "Sometimes I do," 
     f "but then I remind myself it’s only showing me where to look next. I think that’s what you’re facing right now. Your art’s talking back."
     "The artist stares into the cup, watching the foam settle."
@@ -208,7 +215,7 @@ label matcha_path:
     "They lift the cup and smile faintly after a sip."
     c "Bitter... but clean. Like a restart."
     f "Exactly. Every restart writes a new line."
-    $ show_centre("kh","ksmile")
+    $ show_center("kh","ksmile")
 
     c "Thank you. I think I’ll try again — maybe sketch this place tomorrow."
     f "I’ll keep your seat ready."
@@ -220,15 +227,15 @@ label matcha_path:
 # LATTE PATH — “Gentle Comfort”
 # -----------------------------------
 label latte_path:
-    $ show_centre("ksmile","kn")
-    f "How about a latte> Smooth, comforting, easy on the heart."
+    $ show_center("ksmile","kn")
+    f "How about a latte? Smooth, comforting, easy on the heart."
     "You pour the milk slowly, swirling it into a simple heart pattern."
     c "Nice art. Maybe I should learn that, it’s neater than my sketches lately."
     f "Heh. Took years of practise. I’ve spilt enough milk to learn patience beats perfection."
     c "Sounds like experience talking."
     f "I suppose so. I teach coding part-time. Mostly Python. Happen with myself in both coding and teaching. And to my students too."
     c "A teacher? Bet that’s rewarding."
-    $ show_centre("kh","ksmile")
+    $ show_center("kh","ksmile")
 
     f "It is, though it tests your patience. Students forget colons, mix up loops, panic over little bugs. I always remind them that every mistake’s just progress with attitude."
     c "Ha! I could use that mindset. Every sketch I make lately feels wrong."
@@ -238,9 +245,9 @@ label latte_path:
     c "That’s… actually comforting. I keep restarting drawings, hoping the next one’s perfect."
     f "You sound like my students. I always tell them, ‘perfection kills progress’. You can’t build something if you never run it."
     c "True. Maybe I’ve been stuck chasing the perfect line."
-    $ show_centre("ksmile","kh")
+    $ show_center("ksmile","kh")
     f "Sometimes you need to leave a note to your future self. I leave comments in my code: ‘# remember to rest’. Helps me not forget that humans need recharging too."
-    $ show_centre("kh","ksmile")
+    $ show_center("kh","ksmile")
     "They laugh softly, the tension in their shoulders easing."
     c "Maybe I’ll start leaving notes to myself like that. ‘# breathe’, ‘# take a walk’. Might help."
     f "See? You’re already rewriting your script."
@@ -259,13 +266,13 @@ label latte_path:
 label ending:
     $ set_scene("night_cafe")
     $ play_music(mattari)
-    $ show_centre("kn","kh")
+    $ show_left("kn","kh")
 
     "Fird wanted to turn the sign to 'Closed.' A friend drops by, waving through the window."
     $ enter_from_right("ah", at_transform=right_side)
 
     a "Long day?"
-    $ show_centre("kh","kn")
+    $ show_left("kh","kn")
     f "Eh Mad! Didn't expect to see you here this late."
     a "Gotta drop by. I heard you made the best coffee in town now!"
     f "Hah, flattery won't get you a free cup my friend."
@@ -282,7 +289,7 @@ label ending:
 
 label open_end:
     
-    $ show_center("kn", "kh")
+    $ show_left("kn", "kh")
     f "Honestly... I’m exhausted. Helping people makes me forget my own mess. You remember, right?"
     $ show_right("an", "ah")
     a "I've been your friend for over 10 years"
@@ -290,7 +297,7 @@ label open_end:
     $ show_right("ah", "an")
     a "I know"
     a "Then let me buy you a drink for once."
-    $ show_center("kh", "kn")
+    $ show_left("kh", "kn")
     f "Ha, you’ll ruin my business model."
     a "Maybe healing’s not about running a café. Maybe it’s about sharing the table."
     "They both sit, two cups between you. For the first time today, the silence feels peaceful."
@@ -328,12 +335,12 @@ label open_end:
         a "Desperate times call for desperate measures"
         jump good_end
     else:
-        $ set_scene("night_entrance")
+        $ set_scene("entrance_night")
         $ play_music(mattari)
         jump neutral_end
 
 label quiet_end:
-    $ show_center("kn", "kh")
+    $ show_left("kn", "kh")
 
     f "I’m fine. Just tired, that’s all."
     $ show_right("an", "ah")
@@ -463,8 +470,10 @@ label good_end:
     a "Of course!"
    
     $ set_scene("black")
+    # $ set_scene("goodend")
+
     $ play_music(ending)
-    scene bg goodend with fade
+    scene goodend with fade
     f "Our pain and experience shaped us"
     f "No matter how hard it is, there is usually a way to solve it"
     f "What if we don't know how to, you might ask?"
@@ -476,20 +485,20 @@ label good_end:
     return
 
 label neutral_end:
-    $ set_scene("night_entrance")
+    $ set_scene("entrance_night")
     $ play_music(bittersweet)
     $ enter_from_right("kh") 
     f "Let's lock up."    
  
     f "I helped a few people today... I think."
-    $ show_center("fn", "fh")
+    $ show_center("kn", "kh")
 
     f "But no matter how many cups I serve, I still feel that quiet ache inside."
-    $ show_center("fh", "fn")
+    $ show_center("ksmile", "kn")
 
     f "You were right, Mad... Healing takes time. Maybe I’m still learning how."
     f "Tomorrow... maybe someone will make a cup for me."
-    scene bg neutralend with fade
+    scene neutralend with fade
 
     "Neutral Ending - A Quiet Brew"
     return
