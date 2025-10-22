@@ -321,7 +321,7 @@ screen navigation():
 
             textbutton _("Main Menu") action MainMenu()
 
-        textbutton _("About") action ShowMenu("about")
+        textbutton _("About & Credits") action ShowMenu("about")
 
         if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
@@ -550,7 +550,7 @@ screen about():
     ## This use statement includes the game_menu screen inside this one. The
     ## vbox child is then included inside the viewport inside the game_menu
     ## screen.
-    use game_menu(_("About"), scroll="viewport"):
+    use game_menu(_("About & Credits"), scroll="viewport"):
 
         style_prefix "about"
 
@@ -564,6 +564,34 @@ screen about():
                 text "[gui.about!t]\n"
 
             text _("Made with {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
+
+            text "" size 30
+            text "Healing Cafe" size 25
+            text "Created by firdauskotp"
+            text "A story about kindness, rest, and the warmth of a shared cup." 
+
+            null height 20
+
+            # 🎵 Music Credits
+            text "Music Credits" size 30
+            text "Aaron Krogh – sound effects and ambient pieces"
+            text "Sora the Troll"
+            text "Soundtracks sourced from Pixabay"
+
+            null height 20
+
+            # 🎨 Art & Images
+            text "Art & Images" size 30
+            text "Character sprites created using Charat"
+            text "Backgrounds generated with ChatGPT image tools"
+
+            null height 20
+
+            # 🛠️ Tools Used
+            text "Tools Used" size 30
+            text "Ren'Py Visual Novel Engine"
+            text "Python"
+            text "Charat & Pixabay assets"
 
 
 style about_label is gui_label
